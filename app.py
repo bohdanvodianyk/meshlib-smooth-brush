@@ -31,7 +31,7 @@ async def process(
     smoothing_iterations: int = Form(10),
     fill_holes: bool = Form(False),
     repair: bool = Form(False),
-) -> Union[FileResponse, JSONResponse]:
+) -> FileResponse | JSONResponse:
     suffix = Path(file.filename or "mesh").suffix or ".stl"
     with tempfile.TemporaryDirectory() as tmpdir:
         tmp_path = Path(tmpdir)
