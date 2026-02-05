@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MeshLib Smooth Brush</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>MeshLib Smooth Brush</h1>
+        <p class="subtitle">
+          Upload an STL/PLY mesh, smooth it, and optionally run repair and hole
+          filling.
+        </p>
+      </header>
+
+      <section class="panel">
+        <form id="mesh-form">
+          <label class="file-input">
+            <span>Mesh file (.stl, .ply)</span>
+            <input id="mesh-file" name="file" type="file" accept=".stl,.ply" required />
+          </label>
+
+          <div class="field">
+            <label for="smoothing-strength">Smoothing strength</label>
+            <input
+              id="smoothing-strength"
+              name="smoothing_strength"
+              type="range"
+              min="0"
+              max="1"
+              step="0.05"
+              value="0.5"
+            />
+            <span id="strength-value">0.5</span>
+          </div>
+
+          <div class="field">
+            <label for="smoothing-iterations">Smoothing iterations</label>
+            <input
+              id="smoothing-iterations"
+              name="smoothing_iterations"
+              type="number"
+              min="1"
+              max="100"
+              value="10"
+            />
+          </div>
+
+          <div class="checkboxes">
+            <label>
+              <input id="fill-holes" name="fill_holes" type="checkbox" />
+              Fill holes
+            </label>
+            <label>
+              <input id="repair" name="repair" type="checkbox" />
+              Repair mesh
+            </label>
+          </div>
+
+          <button type="submit" class="primary">Apply smooth brush</button>
+        </form>
+
+        <div id="status" class="status" role="status"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Tips</h2>
+        <ul>
+          <li>Use lower smoothing strength for subtle sculpting.</li>
+          <li>Enable repair before filling holes if the mesh is non-manifold.</li>
+          <li>Download the processed mesh to review in your CAD tool.</li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
